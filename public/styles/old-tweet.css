@@ -1,0 +1,53 @@
+
+#tweets-container {
+  background-color: #eeeeee;
+  padding: 3px;
+  margin-top: 1em;
+
+}
+
+.old-tweet {
+  border:1px solid #eeeeee;
+  border-radius: 7px;
+  background-color: #ffffff;
+  opacity: 0.7;
+}
+
+.old-tweet .header {
+  background-color: #C2E1A6;
+  padding: 3px;
+}
+
+.old-tweet .footer {
+  padding: 3px;
+}
+
+.old-tweet .user-avatar {
+  display: inline-block;
+}
+
+.old-tweet h2 {
+  vertical-align: top;
+  display: inline-block;
+}
+
+.old-tweet h5 {
+  float: right;
+  display: inline-block;
+}
+
+.old-tweet .icon-container {
+  display: inline-block;
+  float: right;
+}
+
+.old-tweet .old-tweet-content {
+  padding: 5px;
+  text-align: justify;
+  vertical-align: text-top;
+}
+
+.old-tweet .action-icons {
+  display: none;
+}
+

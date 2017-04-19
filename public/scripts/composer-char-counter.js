@@ -1,7 +1,7 @@
 
 // document ready.
 $(function () {
-  $( ".new-tweet textarea").on("keyup", function(event) {
+  $( ".new-tweet textarea" ).on("keyup", function(event) {
     var theTextArea = $( this );
     var theCounter = $( this ).parent()[0].lastElementChild;
     theCounter.innerText = 140 - theTextArea[0].textLength;
