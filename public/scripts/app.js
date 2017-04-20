@@ -4,56 +4,84 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// Test / driver code (temporary). Eventually will get this from the server.
-var tweetData = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": {
-        "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-        "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-        "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
+
+
+/*var clickHandler= $("#carousel").data("events")['click'];
+
+('#carousel').bind('mouseenter', function(){
+
+    $("#carousel").data("events")['click']=null;
+
+}).bind('mouseleave', function(){
+
+    $("#carousel").data("events")['click']=clickHandler;
+
+});*/
+
+
+
+
+// Document Ready JQuery
+$( function () {
+
+  // Submit the form using jquery AJAX
+  var $form = $('#new-tweet-form');
+
+
+  $form.on('submit', function (event) {
+    event.preventDefault();
+
+    if ($(this).children("textarea").val().length === 0) {
+
+      $("#flash-empty").show();
+
+    } else if ($(this).children("textarea").val().length > 140)  {
+
+      $("#flash-longer").show();
+
+    } else {
+
+      $("#flash-longer").hide();
+      $("#flash-empty").hide();
+
+      $.ajax({
+        url: '/tweets',
+        method: 'POST',
+        data: $(this).serialize(),
+        success: function (data, status, obj) {
+          loadTweets();
+        },
+        error: function (obj1, e, obj2) {
+          console.log(obj1);
+          console.log(obj2);
+          console.log(e);
+        }
+      });
+    }
+
+  });
+
+  function renderTweets(tweets) {
+    $articles = $("<div>");
+    for (tweet in tweets) {
+      $articles.append(createTweetElement(tweets[tweet]));
+    }
+    return $articles;
+  };
+
+  function loadTweets() {
+    $.ajax({
+      url: '/tweets',
+      method: 'GET',
+      success: function (data, status, obj) {
+        // Pass the data retrieved to the renderTweets function.
+        $('#tweets-container').html("");
+        $('#tweets-container').prepend(renderTweets(data));
       },
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": {
-        "small":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
-        "regular": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
-        "large":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
-      },
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  },
-  {
-    "user": {
-      "name": "Johann von Goethe",
-      "avatars": {
-        "small":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
-        "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
-        "large":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
-      },
-      "handle": "@johann49"
-    },
-    "content": {
-      "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
-    },
-    "created_at": 1461113796368
+    });
   }
-];
 
-
-function createTweetElement(tweetData) {
+  function createTweetElement(tweetData) {
     $image = $('<img>').attr("src", tweetData.user.avatars.small);
     $avatar = $('<div>').addClass("user-avatar").append($image);
     $userName = $('<h2>').text(tweetData.user.name);
@@ -64,8 +92,8 @@ function createTweetElement(tweetData) {
 
     // Main Components
     $tweetContent = $('<p>').addClass("old-tweet-content").text(tweetData.content.text);
-    $line = $('<hr>');
 
+    $line = $('<hr>');
     $fontAwesomeFlag = $('<i>').addClass("fa fa-flag").attr("aria-hidden", "true");
     $fontAwesomeRetweet = $('<i>').addClass("fa fa-retweet").attr("aria-hidden", "true");
     $fontAwesomeHeart = $('<i>').addClass("fa fa-heart").attr("aria-hidden", "true");
@@ -78,39 +106,22 @@ function createTweetElement(tweetData) {
     $divIcons = $('<div>').addClass("icon-container action-icons").append($iconFlag, $iconRetweet, $iconHeart);
 
     // Main Component
-    $footer = $('<footer>').addClass("footer").append($created, $divIcons);
+    $footer = $('<footer>').addClass("footer").append($line, $created, $divIcons);
 
-    $article = $('<article>').addClass("old-tweet").append($header, $tweetContent, $line, $footer);
+    $article = $('<article>').addClass("old-tweet").append($header, $tweetContent, $footer);
 
     return $article;
   }
 
+  // Load the tweets from the in memory DB.
+  loadTweets();
 
-// Document Ready JQuery
-$( function () {
-
-  function renderTweets(tweets) {
-    $articles = $("<div>");
-    for (tweet in tweets) {
-      $articles.append(createTweetElement(tweets[tweet]));
-    }
-    return $articles;
-  };
-
-
-  let $tweets = renderTweets(tweetData);
-  console.log($tweets);
-  // Test / driver code (temporary)
-  $('#tweets-container').append($tweets); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
-
-  $( ".old-tweet" )
-  .on( "mouseenter", function() {
-    $( ".action-icons" ).css("display", "inline-block");
+  $(".old-tweet").on("mouseenter", function() {
     $( ".old-tweet" ).css("opacity", 1);
-  })
-  .on( "mouseleave", function() {
-    $( ".action-icons" ).css("display", "none");
+  }).on("mouseleave", function() {
     $( ".old-tweet" ).css("opacity", 0.7);
   });
+
+
 });
 

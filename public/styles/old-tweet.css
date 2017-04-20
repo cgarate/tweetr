@@ -1,7 +1,6 @@
 
 #tweets-container {
-  background-color: #eeeeee;
-  padding: 3px;
+  padding: 2px;
   margin-top: 1em;
 
 }
@@ -9,17 +8,20 @@
 .old-tweet {
   border:1px solid #eeeeee;
   border-radius: 7px;
-  background-color: #ffffff;
+  background-color: #eeeeee;
   opacity: 0.7;
+  margin-bottom: 1em;
 }
 
 .old-tweet .header {
-  background-color: #C2E1A6;
-  padding: 3px;
+  background-color: lightsteelblue;
+  padding: 4px;
+  border-radius: 7px;
 }
 
 .old-tweet .footer {
-  padding: 3px;
+  padding: 4px;
+  background-color: lightsteelblue;
 }
 
 .old-tweet .user-avatar {
@@ -45,6 +47,7 @@
   padding: 5px;
   text-align: justify;
   vertical-align: text-top;
+  background-color: #eeeeee;
 }
 
 .old-tweet .action-icons {

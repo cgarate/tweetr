@@ -39,11 +39,15 @@
     <section class="new-tweet">
       <h2>Compose Tweet</h2>
       <hr>
-      <form action="/tweets/" method="POST">
+      <form name="new-tweet-form" id="new-tweet-form" action="/tweets/" method="POST">
         <textarea name="text" placeholder="What are you humming about?"></textarea>
-        <input type="submit" name="Tweet" value="Tweet">
+        <input id="new-tweet-submit" type="submit" name="Tweet" value="Tweet">
         <span class="counter">140</span>
       </form>
+      <div id="flash">
+        <div id='flash-empty'>An empty tweet? Write something please!</div>
+        <div id='flash-longer'>Too many characters!</div>
+      </div>
     </section>
 
     <section id="tweets-container">
