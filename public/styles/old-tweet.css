@@ -54,3 +54,11 @@
   display: none;
 }
 
+.old-tweet:hover {
+  opacity: 1;
+}
+
+.old-tweet:hover .action-icons {
+  display: inline-block;
+}
+

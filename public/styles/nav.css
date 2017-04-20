@@ -1,5 +1,6 @@
 
 #nav-bar {
+  z-index: 10;
   position: fixed;
   background-color: #00a087;
   width: 100%;
@@ -15,9 +16,33 @@
 
 #nav-bar .header {
   float: left;
+  display: inline-block;
   vertical-align: middle;
   font-size: 2rem;
   padding: 0 0 0 10px;
   line-height: 2.5;
+}
+
+#nav-bar .btn-wrap {
+  float: right;
+  display: inline-block;
+  position: relative;
+  top: 1.5em;
+}
+
+#nav-bar .btn {
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px #666666;
+  font-family: Arial;
+  color: #00a087;
+  font-size: 20px;
+  background: #dddddd;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+#nav-bar .btn:hover {
+  background: #ffffff;
+  text-decoration: none;
 }
 

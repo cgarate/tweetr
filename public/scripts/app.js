@@ -22,11 +22,10 @@
 
 
 // Document Ready JQuery
-$( function () {
+$( document ).ready(function() {
 
   // Submit the form using jquery AJAX
   var $form = $('#new-tweet-form');
-
 
   $form.on('submit', function (event) {
     event.preventDefault();
@@ -76,7 +75,7 @@ $( function () {
       success: function (data, status, obj) {
         // Pass the data retrieved to the renderTweets function.
         $('#tweets-container').html("");
-        $('#tweets-container').prepend(renderTweets(data));
+        $('#tweets-container').append(renderTweets(data));
       },
     });
   }
@@ -116,12 +115,14 @@ $( function () {
   // Load the tweets from the in memory DB.
   loadTweets();
 
-  $(".old-tweet").on("mouseenter", function() {
-    $( ".old-tweet" ).css("opacity", 1);
-  }).on("mouseleave", function() {
-    $( ".old-tweet" ).css("opacity", 0.7);
-  });
+  // Hide the tweeter form.
+  $( "#new-tweet-container" ).slideUp("fast");
 
+  $(".btn").on("click", function() {
+    $( "#new-tweet-container" ).slideToggle("slow", function() {
+      $( "#tweet-text" ).focus();
+    })
+  })
 
-});
-
+//Document ready ends
+})
