@@ -4,23 +4,6 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-
-
-/*var clickHandler= $("#carousel").data("events")['click'];
-
-('#carousel').bind('mouseenter', function(){
-
-    $("#carousel").data("events")['click']=null;
-
-}).bind('mouseleave', function(){
-
-    $("#carousel").data("events")['click']=clickHandler;
-
-});*/
-
-
-
-
 // Document Ready JQuery
 $( document ).ready(function() {
 
@@ -49,6 +32,7 @@ $( document ).ready(function() {
         data: $(this).serialize(),
         success: function (data, status, obj) {
           loadTweets();
+          $( "#tweet-text" ).val(null);
         },
         error: function (obj1, e, obj2) {
           console.log(obj1);
@@ -101,7 +85,7 @@ $( document ).ready(function() {
     $iconRetweet = $('<span>').append($fontAwesomeRetweet);
     $iconHeart = $('<span>').append($fontAwesomeHeart);
 
-    $created = $('<span>').text(tweetData.created_at);
+    $created = $('<span>').text(new Date(tweetData.created_at));
     $divIcons = $('<div>').addClass("icon-container action-icons").append($iconFlag, $iconRetweet, $iconHeart);
 
     // Main Component
@@ -116,7 +100,7 @@ $( document ).ready(function() {
   loadTweets();
 
   // Hide the tweeter form.
-  $( "#new-tweet-container" ).slideUp("fast");
+  $( "#new-tweet-container" ).hide(5);
 
   $(".btn").on("click", function() {
     $( "#new-tweet-container" ).slideToggle("slow", function() {
