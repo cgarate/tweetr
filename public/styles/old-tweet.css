@@ -6,7 +6,7 @@
 }
 
 .old-tweet {
-  border:1px solid #eeeeee;
+  border:1px solid #aaaaaa;
   border-radius: 7px;
   background-color: #eeeeee;
   opacity: 0.7;
@@ -14,14 +14,14 @@
 }
 
 .old-tweet .header {
-  background-color: lightsteelblue;
+  background-color: #eeeeee;
   padding: 4px;
   border-radius: 7px;
 }
 
 .old-tweet .footer {
   padding: 4px;
-  background-color: lightsteelblue;
+  background-color: #ffffff;
 }
 
 .old-tweet .user-avatar {
@@ -31,11 +31,15 @@
 .old-tweet h2 {
   vertical-align: top;
   display: inline-block;
+  margin: auto;
+  padding: inherit;
 }
 
 .old-tweet h5 {
   float: right;
   display: inline-block;
+  margin: auto;
+  padding: inherit;
 }
 
 .old-tweet .icon-container {
@@ -43,11 +47,16 @@
   float: right;
 }
 
+.old-tweet .icon-container span {
+  padding: 3px;
+}
+
 .old-tweet .old-tweet-content {
+  height: 3.5em;
   padding: 5px;
   text-align: justify;
-  vertical-align: text-top;
-  background-color: #eeeeee;
+  margin: auto;
+  background-color: #ffffff;
 }
 
 .old-tweet .action-icons {
