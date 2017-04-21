@@ -83,7 +83,7 @@ $( document ).ready(function() {
     let dateNowMs = dateNow.setMilliseconds(0);
     let diffMs = dateNowMs - tweetData.created_at; // Get the range of milliseconds between the current date and the created_at datapoint.
     let daysPassed = Math.round(diffMs / (60*60*24*1000)); // Convert to days, it's ok to show 0, I won't go to hours at this point.
-    daysPassed += " days ago." // Create a string to save to the markup.
+    daysPassed += " day(s) ago." // Create a string to save to the markup.
 
     $created = $('<span>').text(daysPassed);
     $divIcons = $('<div>').addClass("icon-container action-icons").append($iconFlag, $iconRetweet, $iconHeart);

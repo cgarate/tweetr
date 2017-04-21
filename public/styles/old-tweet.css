@@ -1,73 +1,46 @@
+.displayInline, .old-tweet .user-avatar, .old-tweet h2, .old-tweet h5, .old-tweet .icon-container, .old-tweet:hover .action-icons {
+  display: inline-block; }
 
 #tweets-container {
   padding: 2px;
-  margin-top: 1em;
-
-}
+  margin-top: 1em; }
 
 .old-tweet {
-  border:1px solid #aaaaaa;
+  border: 1px solid #aaaaaa;
   border-radius: 7px;
   background-color: #eeeeee;
   opacity: 0.7;
-  margin-bottom: 1em;
-}
-
-.old-tweet .header {
-  background-color: #eeeeee;
-  padding: 4px;
-  border-radius: 7px;
-}
-
-.old-tweet .footer {
-  padding: 4px;
-  background-color: #ffffff;
-}
-
-.old-tweet .user-avatar {
-  display: inline-block;
-}
-
-.old-tweet h2 {
-  vertical-align: top;
-  display: inline-block;
-  margin: auto;
-  padding: inherit;
-}
-
-.old-tweet h5 {
-  float: right;
-  display: inline-block;
-  margin: auto;
-  padding: inherit;
-}
-
-.old-tweet .icon-container {
-  display: inline-block;
-  float: right;
-}
-
-.old-tweet .icon-container span {
-  padding: 3px;
-}
-
-.old-tweet .old-tweet-content {
-  height: 3.5em;
-  padding: 5px;
-  text-align: justify;
-  margin: auto;
-  background-color: #ffffff;
-}
-
-.old-tweet .action-icons {
-  display: none;
-}
+  margin-bottom: 1em; }
+  .old-tweet .header {
+    background-color: #eeeeee;
+    padding: 4px;
+    border-radius: 7px; }
+  .old-tweet .footer {
+    padding: 4px;
+    background-color: #ffffff;
+    border-radius: 7px; }
+  .old-tweet h2 {
+    vertical-align: top;
+    margin: auto;
+    padding: inherit; }
+  .old-tweet h5 {
+    float: right;
+    margin: auto;
+    padding: inherit; }
+  .old-tweet .icon-container {
+    float: right; }
+    .old-tweet .icon-container span {
+      padding: 3px; }
+  .old-tweet .old-tweet-content {
+    height: 3.5em;
+    padding: 5px;
+    text-align: justify;
+    margin: auto;
+    background-color: #ffffff; }
+  .old-tweet .action-icons {
+    display: none; }
 
 .old-tweet:hover {
-  opacity: 1;
-}
+  opacity: 1; }
 
-.old-tweet:hover .action-icons {
-  display: inline-block;
-}
-
+/*# sourceMappingURL=old-tweet.css.map */

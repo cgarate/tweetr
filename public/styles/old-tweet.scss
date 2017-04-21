@@ -1,0 +1,83 @@
+
+@import '_variables';
+
+.displayInline {
+  display: inline-block;
+}
+
+#tweets-container {
+  padding: 2px;
+  margin-top: 1em;
+
+}
+
+.old-tweet {
+  border:1px solid $color-border-old-tweet;
+  border-radius: 7px;
+  background-color: $bg-color-tweets;
+  opacity: 0.7;
+  margin-bottom: 1em;
+
+  .header {
+    background-color: $bg-color-tweets;
+    padding: 4px;
+    border-radius: 7px;
+  }
+
+  .footer {
+    padding: 4px;
+    background-color: $bg-color-textbox;
+    border-radius: 7px;
+  }
+
+  .user-avatar {
+    @extend .displayInline;
+  }
+
+
+  h2 {
+    @extend .displayInline;
+    vertical-align: top;
+    margin: auto;
+    padding: inherit;
+  }
+
+  h5 {
+    float: right;
+    @extend .displayInline;
+    margin: auto;
+    padding: inherit;
+  }
+
+  .icon-container {
+    @extend .displayInline;
+    float: right;
+
+    span {
+      padding: 3px;
+    }
+
+  }
+
+  .old-tweet-content {
+    height: 3.5em;
+    padding: 5px;
+    text-align: justify;
+    margin: auto;
+    background-color: $bg-color-textbox;
+  }
+
+  .action-icons {
+    display: none;
+  }
+
+}
+
+.old-tweet:hover {
+  opacity: 1;
+}
+
+.old-tweet:hover .action-icons {
+  @extend .displayInline;
+}
+
