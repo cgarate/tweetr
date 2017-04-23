@@ -8,7 +8,7 @@
 $( document ).ready(function() {
 
   // Submit the form using jquery AJAX
-  var $form = $('#new-tweet-form'); // Grab the form
+  let $form = $('#new-tweet-form'); // Grab the form
 
   // Add event listener
   $form.on('submit', function (event) {
@@ -73,10 +73,11 @@ $( document ).ready(function() {
     $fontAwesomeFlag = $('<i>').addClass("fa fa-flag").attr("aria-hidden", "true");
     $fontAwesomeRetweet = $('<i>').addClass("fa fa-retweet").attr("aria-hidden", "true");
     $fontAwesomeHeart = $('<i>').addClass("fa fa-heart").attr("aria-hidden", "true");
+    $likeLink = $('<a>').attr("data-tweetID", tweetData.myID).append($fontAwesomeHeart);
 
-    $iconFlag = $('<span>').append($fontAwesomeFlag);
-    $iconRetweet = $('<span>').append($fontAwesomeRetweet);
-    $iconHeart = $('<span>').append($fontAwesomeHeart);
+    $icons = $('<span>').append($fontAwesomeFlag).append($fontAwesomeRetweet).append($likeLink).attr("data-tweetID", tweetData.myID);
+    //$iconRetweet = $('<span>').append($fontAwesomeRetweet);
+    //$iconHeart = $('<span>').append($fontAwesomeHeart);
 
     // Do some massaging to the dates so we can convert the created_at to days ago format.
     let dateNow = new Date();
@@ -86,7 +87,8 @@ $( document ).ready(function() {
     daysPassed += " day(s) ago." // Create a string to save to the markup.
 
     $created = $('<span>').text(daysPassed);
-    $divIcons = $('<div>').addClass("icon-container action-icons").append($iconFlag, $iconRetweet, $iconHeart);
+    $likes = $('<span>').attr("data-tweetID", tweetData.myID).text(tweetData.likes);
+    $divIcons = $('<div>').addClass("icon-container action-icons").append($icons, $likes);
 
     // Main Component to be added to <article> below.
     $footer = $('<footer>').addClass("footer").append($line, $created, $divIcons);
@@ -118,9 +120,9 @@ $( document ).ready(function() {
         $('#tweets-container').append(renderTweets(data));
       },
     });
-  }
+  };
 
-  // Load the tweets from the in memory DB.
+  // Load the tweets from the DB.
   loadTweets();
 
   // Hide the tweeter form.
@@ -131,6 +133,23 @@ $( document ).ready(function() {
       $( "#tweet-text" ).focus();
     })
   })
+
+  // Add or substract a like to the database
+  $( "#tweets-container" ).on("click", 'a', (event) => {
+    $.ajax({
+        url: '/tweets/likes/',
+        method: 'POST',
+        data: {myID: event.currentTarget.attributes["0"].nodeValue},
+        success: function (data, status, obj) {
+          loadTweets();
+        },
+        error: function (obj1, e, obj2) {
+          console.log(obj1);
+          console.log(obj2);
+          console.log(e);
+        }
+      });
+  });
 
 //Document ready ends
 })

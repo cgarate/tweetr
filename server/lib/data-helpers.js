@@ -13,6 +13,20 @@ module.exports = function makeDataHelpers(db) {
         callback(null, true);
     },
 
+    // Add one more like to the like counter
+    likeTweets: function(id, callback) {
+      db.collection("tweets").updateOne({ "myID" : id }, { $inc: { likes: 1 } }, (err, result) => {
+              callback(err);
+            });
+    },
+
+    // Substract one like to the like counter
+    dislikeTweets: function(id, callback) {
+      db.collection("tweets").updateOne({ "myID" : id }, { $inc: { likes: -1 } }, (err, result) => {
+              callback(err);
+            });
+    },
+
     // Get all tweets in `db`, sorted by newest first
     getTweets: function(callback) {
 
@@ -21,7 +35,6 @@ module.exports = function makeDataHelpers(db) {
             return callback(err);
           }
           callback(null, tweets);
-
         });
     }
 

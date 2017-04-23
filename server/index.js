@@ -10,6 +10,7 @@ const app           = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+
 // Connect to Mongo
 const db = require("mongoDB").MongoClient;
 const MONGODB_URI = "mongodb://localhost:27017/tweeter";
@@ -35,7 +36,8 @@ db.connect(MONGODB_URI, (err, db) => {
   const tweetsRoutes = require("./routes/tweets")(DataHelpers);
 
   // Mount the tweets routes at the "/tweets" path prefix:
-  app.use("/tweets", tweetsRoutes);
+  app.use("/tweets/", tweetsRoutes);
+  // override with POST having ?_method=DELETE
 
   //db.close();
 });
